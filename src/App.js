@@ -7,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <h1>React Components</h1>
+      <p>Hello World</p>
       <Counter />
       <Search />
       <Genre />
