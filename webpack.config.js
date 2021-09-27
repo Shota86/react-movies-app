@@ -1,12 +1,19 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, '/dist'),
         filename: 'index_bundle.js'
-    },   
+    }, 
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin()
+    ],  
     module: {
         rules: [
             {
@@ -15,12 +22,19 @@ module.exports = (env) = {
                 use: {
                     loader: 'babel-loader'
                 }
-            }
+            },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'assets/resourse'
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                type: 'assets/resourse'
+            },
         ]
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        })
-    ]
+    }    
 }
