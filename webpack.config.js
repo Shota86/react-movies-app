@@ -29,7 +29,13 @@ module.exports = (env) = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'assets/resourse'
+                use: [
+                    {
+                      loader: 'file-loader',
+                      options: { name: 'img/[name].[ext]' }
+                    },
+                    'image-webpack-loader'
+                  ],
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
