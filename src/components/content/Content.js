@@ -1,8 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Movies from "./movies/Movies";
+
 import "./content.css";
 
-let Content = () => {
+let Content = (props) => {
   return (
     <div className="content">
       <div className="filter">
@@ -33,9 +35,17 @@ let Content = () => {
         </select>
       </div>
       <p>39 movies found</p>
-      <Movies />
+      <Movies 
+        onEditMovieClick={props.onEditMovieClick}
+        onDeleteMovieClick={props.onDeleteMovieClick}
+      />
     </div>
   );
+};
+
+Content.propTypes = {
+  onEditMovieClick: PropTypes.func.isRequired,
+  onDeleteMovieClick: PropTypes.func.isRequired,
 };
 
 export default Content;

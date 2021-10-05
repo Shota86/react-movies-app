@@ -1,5 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MovieCard from "./movieCard/MovieCard";
+
 import "./movies.css";
 
 import pulpFiction from "../../../assets/pulp-fiction.png";
@@ -10,57 +12,67 @@ import inception from "../../../assets/inception.png";
 import reserviordogs from "../../../assets/reservior-dogs.png";
 
 let items = [
-    {
-        id: 1,
-        title: "Pulp Fiction",
-        description: "Action, Criminal",
-        image: pulpFiction
-    },
-    {
-        id: 2,
-        title: "Bohemian Rhapsody",
-        description: "Drama, Music",
-        image: bohemian
-    },
-    {
-        id: 3,
-        title: "Kill Bill",
-        description: "Action",
-        image: killBill
-    },
-    {
-        id: 4,
-        title: "Avengers",
-        description: "Action, Adventure",
-        image: avengers
-    },
-    {
-        id: 5,
-        title: "Inception",
-        description: "Action, Adventure",
-        image: inception
-    },
-    {
-        id: 6,
-        title: "Reserviordogs",
-        description: "Action Criminal",
-        image: reserviordogs
-    }
-]
+  {
+    id: 1,
+    title: "Pulp Fiction",
+    description: "Action, Criminal",
+    image: pulpFiction,
+  },
+  {
+    id: 2,
+    title: "Bohemian Rhapsody",
+    description: "Drama, Music",
+    image: bohemian,
+  },
+  {
+    id: 3,
+    title: "Kill Bill",
+    description: "Action",
+    image: killBill,
+  },
+  {
+    id: 4,
+    title: "Avengers",
+    description: "Action, Adventure",
+    image: avengers,
+  },
+  {
+    id: 5,
+    title: "Inception",
+    description: "Action, Adventure",
+    image: inception,
+  },
+  {
+    id: 6,
+    title: "Reserviordogs",
+    description: "Action Criminal",
+    image: reserviordogs,
+  },
+];
 
-let Movies = () => {
-  return (    
-    <div className="movies">
+let Movies = (props) => {
+  return (
+    <>
+      <div className="movies">
         {items.map((movie) => (
-            <MovieCard
-                title={movie.title}
-                description={movie.description}
-                image={movie.image}
-                key={movie.id}
-            />
+          <MovieCard
+            title={movie.title}
+            description={movie.description}
+            image={movie.image}
+            key={movie.id}
+            onEditMovieClick={props.onEditMovieClick}
+            onDeleteMovieClick={props.onDeleteMovieClick}
+          />
         ))}
-    </div>
+      </div>
+      
+    </>
   );
 };
+
+Movies.propTypes = {
+    onEditMovieClick: PropTypes.func.isRequired,
+    onDeleteMovieClick: PropTypes.func.isRequired,
+}
 
 export default Movies;

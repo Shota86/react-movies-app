@@ -3,7 +3,8 @@
     margin: 0 auto;
     background-color: #232323;
     margin-top: 10px;    
-    display: table;       
+    display: table; 
+    font-family: Montserrat;    
 }
 
 .filter {
@@ -59,4 +60,4 @@
     clear: both;
     color: #FFFFFF;
     margin-left: 16px;
-}
+}   
