@@ -1,0 +1,207 @@
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: Montserrat;
+}
+
+.modal-content {
+  background-color: #232323f3;
+  margin: 10% auto;
+  padding-left: 56px;
+  padding-top: 17px;
+  border: 0;
+  width: 970px;
+  height: 1000px;
+}
+
+.modal-content .title {
+  color: #ffffff;
+  font-style: normal;
+  font-size: 40px;
+}
+
+.modal-content form .leftInputs {
+  float: left;
+}
+
+.modal-content form .inputControl {
+  padding: 5px;
+}
+
+.modal-content form .inputControl label {  
+  color: #f65261;
+  font-size: 20px;
+}
+
+.modal-content form .leftInputs .inputControl input {  
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: 10px;
+  border: 0;
+  outline: 0;
+  background: rgba(50, 50, 50, 0.948044);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+  opacity: 0.8;
+  height: 57px;
+  width: 525px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+.modal-content form .leftInputs .inputControl select {  
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: 10px;
+  border: 0;
+  outline: 0;
+  background: rgba(50, 50, 50, 0.948044);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+  opacity: 0.8;
+  height: 57px;
+  width: 539px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+.modal-content form .leftInputs .inputControl select option:hover {
+  box-shadow: 0 0 10px 100px #03161d inset;
+}
+
+.modal-content form .rightInputs {
+  float: right;
+  display: block;
+  margin-right: 63px;
+}
+
+.modal-content form .rightInputs .inputControl input {
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: 10px;
+  border: 0;
+  outline: 0;
+  background: rgba(50, 50, 50, 0.948044);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+  opacity: 0.8;
+  height: 57px;
+  width: 309px;
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+.modal-content form .inputControl textarea {
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: 10px;
+  border: 0;
+  outline: 0;
+  background: rgba(50, 50, 50, 0.948044);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+  opacity: 0.8;
+  width: 877px;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.modal-content .close,
+.deleteModalContent .close
+ {
+  color: #ffffff;
+  float: right;
+  font-size: 35px;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-top: 10px;
+}
+
+.modal-content .close:hover,
+.modal-content .close:focus,
+.deleteModalContent .close:hover,
+.deleteModalContent .close:focus
+ {
+  color: #f65261;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content form .reset {
+  position: relative;
+  top: 15px;
+  right: -522px;
+  background-color: rgba(96, 96, 96, 0);
+  color: #f65261;
+  display: inline-block;
+  width: 182px;
+  height: 57px;
+  border-radius: 4px;
+  border: 1.5px solid #f65261;
+  box-sizing: border-box;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-content form .submit {
+  position: relative;
+  top: 15px;
+  right: -538px;
+  background-color: #f65261;
+  color: #ffffff;
+  display: inline-block;
+  width: 182px;
+  height: 57px;
+  border-radius: 4px;
+  border: 1.5px solid #f65261;
+  box-sizing: border-box;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.deleteModalContent {
+  background-color: #232323f3;
+  margin: 10% auto;
+  padding-left: 56px;
+  padding-top: 17px;
+  border: 0;
+  width: 593px;
+  height: 300px;
+}
+
+.deleteModalContent .title {
+  color: #ffffff;
+  font-style: normal;
+  font-size: 40px;
+}
+
+.deleteModalContent .deleteWrapper p {
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+}
+
+.deleteModalContent .submit {
+  position: relative;
+  top: 15px;
+  left: 334px;
+  background-color: #f65261;
+  color: #ffffff;
+  display: inline-block;
+  width: 182px;
+  height: 57px;
+  border-radius: 4px;
+  border: 1.5px solid #f65261;
+  box-sizing: border-box;
+  font-size: 16px;
+  cursor: pointer;
+}
