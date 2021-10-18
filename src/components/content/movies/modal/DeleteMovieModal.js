@@ -17,7 +17,7 @@ let DeleteMovieModal = (props) => {
     );
 }
 
-DeleteMovieModal.PropTypes = {
+DeleteMovieModal.propTypes = {
     onCloseMovieModalClick: PropTypes.func.isRequired
 }
 

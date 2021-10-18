@@ -12,11 +12,11 @@ let EditMovieModal = (props) => {
                     <div className="leftInputs">        
                         <div className="inputControl">                
                             <label>Title</label><br/>
-                            <input type="text" placeholder="Title" value="Moana"/><br/>
+                            <input type="text" placeholder="Title" defaultValue="Moana"/><br/>
                         </div>
                         <div className="inputControl">                
                             <label>MOVIE URL</label><br/>
-                            <input type="text" placeholder="https://" value="https://www.moana.com"/><br/>
+                            <input type="text" placeholder="https://" defaultValue="https://www.moana.com"/><br/>
                         </div>
                         <div className="inputControl">                
                             <label>GENRE</label><br/>
@@ -31,11 +31,11 @@ let EditMovieModal = (props) => {
                     <div className="rightInputs">
                         <div className="inputControl">                
                             <label>RELEASE DATE</label><br/>
-                            <input type="text" value="11/14/2016" /><br/>
+                            <input type="text" defaultValue="11/14/2016" /><br/>
                         </div>
                         <div className="inputControl">                
                             <label>RATING</label><br/>
-                            <input type="text" value="7.6"/><br/>
+                            <input type="text" defaultValue="7.6"/><br/>
                         </div>
                         <div className="inputControl">                
                             <label>RUNTIME</label><br/>
@@ -54,7 +54,7 @@ let EditMovieModal = (props) => {
     );
 }
 
-EditMovieModal.PropTypes = {
+EditMovieModal.propTypes = {
     onCloseMovieModalClick: PropTypes.func.isRequired
 }
 

@@ -38,6 +38,8 @@ let Content = (props) => {
       <Movies 
         onEditMovieClick={props.onEditMovieClick}
         onDeleteMovieClick={props.onDeleteMovieClick}
+        onMovieDetailsClick={props.onMovieDetailsClick}
+        items={props.items}
       />
     </div>
   );
@@ -46,6 +48,7 @@ let Content = (props) => {
 Content.propTypes = {
   onEditMovieClick: PropTypes.func.isRequired,
   onDeleteMovieClick: PropTypes.func.isRequired,
+  onMovieDetailsClick: PropTypes.func.isRequired,
 };
 
 export default Content;

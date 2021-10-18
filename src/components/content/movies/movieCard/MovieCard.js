@@ -1,40 +1,44 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./movieCard.css";
 
-class MovieCard extends Component {
-  state = {
-    isDropDownVisible: false,
+const MovieCard = props => {
+
+  const [isDropDownVisible, setDropDownVisible] = useState(false);
+
+  const toggleDropDown = () => {
+    setDropDownVisible(!isDropDownVisible);    
   };
 
-  toggleDropDown = () => {
-    this.setState({ isDropDownVisible: !this.state.isDropDownVisible });
-  };
-
- 
-  render() {
-    const { isDropDownVisible } = this.state;
-    const { onEditMovieClick, onDeleteMovieClick } = this.props; 
-    return (
-      <>
-        <div className="movieCard">
-          <div className="threeDotMenu" onClick={this.toggleDropDown}>          
-            {isDropDownVisible && (
-              <div className="dropdown-content">
-                <span className="close">&times;</span>
-                <button onClick={onEditMovieClick}>Edit</button>
-                <button onClick={onDeleteMovieClick}>Delete</button>
-              </div>
-            )}
-          </div>
-          <img src={this.props.image} alt={this.props.title} />
-          <h2 className="title">{this.props.title}</h2>
-          <p className="description">{this.props.description}</p>
+  const {
+    onEditMovieClick,
+    onDeleteMovieClick,
+    onMovieDetailsClick,
+    id,
+    image,
+    title,
+    genre,
+  } = props;
+  
+  return (
+    <>
+      <div className="movieCard" onClick={() => onMovieDetailsClick(true, id)}>
+        <div className="threeDotMenu" onClick={toggleDropDown}>
+          {isDropDownVisible && (
+            <div className="dropdown-content">
+              <span className="close">&times;</span>
+              <button onClick={onEditMovieClick}>Edit</button>
+              <button onClick={onDeleteMovieClick}>Delete</button>
+            </div>
+          )}
         </div>
-      </>
-    );
-  }
-}
+        <img src={image} alt={title} />
+        <h2 className="title">{title}</h2>
+        <p className="description">{genre}</p>
+      </div>
+    </>
+  );
+};
 
 MovieCard.propTypes = {
   title: PropTypes.string.isRequired,
@@ -42,6 +46,7 @@ MovieCard.propTypes = {
   image: PropTypes.string,
   onEditMovieClick: PropTypes.func.isRequired,
   onDeleteMovieClick: PropTypes.func.isRequired,
+  onMovieDetailsClick: PropTypes.func.isRequired,
 };
 
 MovieCard.defaultProps = {
