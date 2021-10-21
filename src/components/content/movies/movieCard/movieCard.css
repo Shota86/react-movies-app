@@ -24,6 +24,15 @@
     margin-top: 1px;
 }
 
+.movieCard .movieStatus {
+  font-size: 14px;
+  color: #0af82a;
+  opacity: 0.7;
+  margin-right: 43px;
+  margin-top: -56px;
+  float: right;
+}
+
 .movieCard .threeDotMenu {
   position: relative;
   top: 54px;

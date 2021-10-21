@@ -54,7 +54,7 @@ let AddMovieModal = (props) => {
     );
 }
 
-AddMovieModal.PropTypes = {
+AddMovieModal.propTypes = {
     onCloseMovieModalClick: PropTypes.func.isRequired
 }
 

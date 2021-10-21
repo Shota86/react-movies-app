@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Header from "./header/Header";
 import Content from "./content/Content";
 import Footer from "./footer/Footer";
@@ -57,76 +57,71 @@ let items = [
 ];
 
 const App = () => {
-
   const [isAddMovieModalVisible, setAddMovieModalVisible] = useState(false);
   const [isEditMovieModalVisible, setEditMovieModalVisible] = useState(false);
-  const [isDeleteMovieModalVisible, setDeleteMovieModalVisible] = useState(false);
+  const [isDeleteMovieModalVisible, setDeleteMovieModalVisible] =
+    useState(false);
   const [isMovieDetailsVisible, setMovieDetailsVisible] = useState(false);
   const [movieId, setMovieId] = useState(undefined);
+  const [movieItems, setMovieItems] = useState([]);
 
-  const handleAddMovieModalVisibility = (isVisible) => {
+  useEffect(() => {
+    setMovieItems(items);
+  });
+
+  const handleAddMovieModalVisibility = useCallback((isVisible) => {
     setAddMovieModalVisible(isVisible);
-  };
+  });
 
-  const handleEditMovieModalVisibility = (isVisible) => {
+  const handleEditMovieModalVisibility = useCallback((isVisible) => {
     setEditMovieModalVisible(isVisible);
-  };
+  });
 
-  const handleDeleteMovieModalVisibility = (isVisible) => {
+  const handleDeleteMovieModalVisibility = useCallback((isVisible) => {
     setDeleteMovieModalVisible(isVisible);
-  };
+  });
 
-  const handleMovieDetailsVisibility = (isVisible, movieId) => {
+  const handleMovieDetailsVisibility = useCallback((isVisible, movieId) => {
     setMovieDetailsVisible(isVisible);
     setMovieId(movieId);
-  };
+  });
 
   const getMovieDetailsData = () => {
-    return items.find((m) => m.id === movieId);
+    return movieItems.find((m) => m.id === movieId);
   };
 
   return (
     <>
       {isMovieDetailsVisible ? (
         <MovieDetails
-          onCloseMovieDetailsClick={() =>
-            handleMovieDetailsVisibility(false)
-          }
+          onCloseMovieDetailsClick={() => handleMovieDetailsVisibility(false)}
           movieDetailsData={getMovieDetailsData()}
         />
       ) : (
-        <Header
-          onAddMovieClick={() => handleAddMovieModalVisibility(true)}
-        />
+        <Header onAddMovieClick={() => handleAddMovieModalVisibility(true)} />
       )}
       <ErrorBoundary>
-      <Content
-        onEditMovieClick={() => handleEditMovieModalVisibility(true)}
-        onDeleteMovieClick={() => handleDeleteMovieModalVisibility(true)}
-        onMovieDetailsClick={handleMovieDetailsVisibility}
-        items={items}
-      />
+        <Content
+          onEditMovieClick={() => handleEditMovieModalVisibility(true)}
+          onDeleteMovieClick={() => handleDeleteMovieModalVisibility(true)}
+          onMovieDetailsClick={handleMovieDetailsVisibility}
+          items={movieItems}
+        />
       </ErrorBoundary>
       <Footer />
       {isAddMovieModalVisible && (
         <AddMovieModal
-          onCloseMovieModalClick={() =>
-            handleAddMovieModalVisibility(false)
-          }
+          onCloseMovieModalClick={() => handleAddMovieModalVisibility(false)}
         />
       )}
       {isEditMovieModalVisible && (
         <EditMovieModal
-          onCloseMovieModalClick={() =>
-            handleEditMovieModalVisibility(false)
-          }
+          onCloseMovieModalClick={() => handleEditMovieModalVisibility(false)}
         />
       )}
       {isDeleteMovieModalVisible && (
         <DeleteMovieModal
-          onCloseMovieModalClick={() =>
-            handleDeleteMovieModalVisibility(false)
-          }
+          onCloseMovieModalClick={() => handleDeleteMovieModalVisibility(false)}
         />
       )}
     </>

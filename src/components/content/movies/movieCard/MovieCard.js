@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import useMovieStatus from "./useMovieStatus";
 import "./movieCard.css";
 
-const MovieCard = props => {
-
+const MovieCard = (props) => {
   const [isDropDownVisible, setDropDownVisible] = useState(false);
 
   const toggleDropDown = () => {
-    setDropDownVisible(!isDropDownVisible);    
+    setDropDownVisible(!isDropDownVisible);
   };
 
   const {
@@ -19,7 +19,7 @@ const MovieCard = props => {
     title,
     genre,
   } = props;
-  
+
   return (
     <>
       <div className="movieCard" onClick={() => onMovieDetailsClick(true, id)}>
@@ -35,6 +35,7 @@ const MovieCard = props => {
         <img src={image} alt={title} />
         <h2 className="title">{title}</h2>
         <p className="description">{genre}</p>
+        <p className="movieStatus">{useMovieStatus(true)}</p>
       </div>
     </>
   );
