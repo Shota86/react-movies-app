@@ -32,10 +32,10 @@ const MovieCard = (props) => {
             </div>
           )}
         </div>
-        <img src={image} alt={title} />
+        <img src={image} alt={title} width="322px" height="455px"/>
         <h2 className="title">{title}</h2>
         <p className="description">{genre}</p>
-        <p className="movieStatus">{useMovieStatus(true)}</p>
+        {/* <p className="movieStatus">{useMovieStatus(true)}</p> */}
       </div>
     </>
   );

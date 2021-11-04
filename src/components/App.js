@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { connect } from "react-redux";
+
 import Header from "./header/Header";
 import Content from "./content/Content";
 import Footer from "./footer/Footer";
@@ -7,6 +9,9 @@ import AddMovieModal from "./content/movies/modal/AddMovieModal";
 import EditMovieModal from "./content/movies/modal/EditMovieModal";
 import DeleteMovieModal from "./content/movies/modal/DeleteMovieModal";
 import MovieDetails from "./content/movies/movieDetails/movieDetails";
+
+import { getMovies } from "../redux/actions/thunks";
+import { getMovieItems, getMoviesTotalAmount } from "../redux/selectors/selectors";
 
 import "../index.css";
 
@@ -56,18 +61,20 @@ let items = [
   },
 ];
 
-const App = () => {
+const App = (props) => {
   const [isAddMovieModalVisible, setAddMovieModalVisible] = useState(false);
   const [isEditMovieModalVisible, setEditMovieModalVisible] = useState(false);
-  const [isDeleteMovieModalVisible, setDeleteMovieModalVisible] =
-    useState(false);
+  const [isDeleteMovieModalVisible, setDeleteMovieModalVisible] = useState(false);
   const [isMovieDetailsVisible, setMovieDetailsVisible] = useState(false);
   const [movieId, setMovieId] = useState(undefined);
-  const [movieItems, setMovieItems] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedSortValue, setSelectedSortValue] = useState("release_date");
 
-  useEffect(() => {
-    setMovieItems(items);
-  });
+  const { movieItems, totalAmount, getMovies } = props;
+
+  useEffect(() => {    
+    getMovies();
+  }, []);
 
   const handleAddMovieModalVisibility = useCallback((isVisible) => {
     setAddMovieModalVisible(isVisible);
@@ -85,6 +92,20 @@ const App = () => {
     setMovieDetailsVisible(isVisible);
     setMovieId(movieId);
   });
+
+  const handleFilterMovie = (genre) => {
+    getMovies(selectedSortValue, genre);
+    setSelectedGenre(genre);
+    setMovieDetailsVisible(false);
+  }
+
+  const handleSortMovie = (sortValue) => {
+    getMovies(sortValue, selectedGenre);
+    setSelectedSortValue(sortValue);
+    setMovieDetailsVisible(false);
+  }
+
+  
 
   const getMovieDetailsData = () => {
     return movieItems.find((m) => m.id === movieId);
@@ -105,7 +126,11 @@ const App = () => {
           onEditMovieClick={() => handleEditMovieModalVisibility(true)}
           onDeleteMovieClick={() => handleDeleteMovieModalVisibility(true)}
           onMovieDetailsClick={handleMovieDetailsVisibility}
+          onFilterMovieClick={handleFilterMovie}
+          onSortMovieClick={handleSortMovie}
           items={movieItems}
+          totalAmount={totalAmount}
+          selectedGenre={selectedGenre}
         />
       </ErrorBoundary>
       <Footer />
@@ -128,4 +153,13 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  console.log("state:", state);
+  return {
+    movieItems: getMovieItems(state),
+    totalAmount: getMoviesTotalAmount(state),
+  };
+};
+
+export default connect(mapStateToProps, { getMovies })(App);
+

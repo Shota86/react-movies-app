@@ -6,6 +6,15 @@ import search_icon from "../../../../assets/search_icon.png";
 
 let MovieDetails = (props) => {
   const { onCloseMovieDetailsClick, movieDetailsData } = props;
+  const {
+    title,
+    poster_path: poster,
+    vote_average: rating,
+    genres,
+    release_date,
+    runtime,
+    overview,
+  } = movieDetailsData;
 
   return (
     <div className="movieDetails">
@@ -15,21 +24,17 @@ let MovieDetails = (props) => {
         style={{ backgroundImage: `url(${search_icon})` }}
         onClick={onCloseMovieDetailsClick}
       ></div>
-      <img src={movieDetailsData.image} alt={movieDetailsData.title} />
+      <img src={poster} alt={title} width="322px" height="455px"/>
       <div className="movieDescription">
-        <h2 className="title">{movieDetailsData.title}</h2>
+        <h2 className="title">{title}</h2>
         <div className="ratingCircle">
-          <p className="rating">8.9</p>
+          <p className="rating">{rating}</p>
         </div>
-        <p className="genre">Action</p>
-        <p className="yearRuntime">1994  &nbsp;&nbsp;  2h 34min</p>        
-        <p className="overview">
-          Jules Winnfield (Samuel L. Jackson) and Vincent Vega (John Travolta)
-          are two hit men who are out to retrieve a suitcase stolen from their
-          employer, mob boss Marsellus Wallace (Ving Rhames). Wallace has also
-          asked Vincent to take his wife Mia (Uma Thurman) out a few days later
-          when
+        <p className="genre">{genres.join(", ")}</p>
+        <p className="yearRuntime">
+          {release_date.substring(0, 4)} &nbsp;&nbsp; {runtime} min
         </p>
+        <p className="overview">{overview}</p>
       </div>
     </div>
   );

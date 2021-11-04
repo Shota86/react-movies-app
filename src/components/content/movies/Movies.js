@@ -11,8 +11,8 @@ const Movies = (props) => {
         {props.items.map((movie) => (
           <MovieCard
             title={movie.title}
-            genre={movie.genre}
-            image={movie.image}
+            genre={movie.genres.join(", ")}
+            image={movie.poster_path}
             key={movie.id}
             id={movie.id}
             onEditMovieClick={props.onEditMovieClick}

@@ -8,6 +8,10 @@
     cursor: pointer;
   }
 
+  .movieCard img{
+    display: block;
+  }
+
   .movieCard .title {
       font-size: 18px;
       color: #FFFFFF;

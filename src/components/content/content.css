@@ -28,10 +28,15 @@
     text-align: center;
     padding: 16px;
     text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .filter li .selected {
+    border-bottom: 2px solid #F65261;
   }
   
   .filter li a:hover {
-    background-color: #111111;
+    background-color: #111111;    
     cursor: pointer;
   }
 
@@ -39,6 +44,7 @@
     margin-top:17px;
     margin-right: 17px;
     float: right;
+    margin-bottom: 32px;
 }
 
 .sort label {
@@ -56,8 +62,10 @@
     background-color: #232323 !important;
 }
 
-.content p {
+
+
+.content .amount {
     clear: both;
-    color: #FFFFFF;
+    color: #FFFFFF;    
     margin-left: 16px;
 }   
