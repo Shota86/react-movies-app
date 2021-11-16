@@ -17,6 +17,15 @@ const moviesAPI = {
     return instance
     .get(`${ROUTES.MOVIE}${id}`)
     .then((response) => response.data);
+  },
+  postMovie(movie) {    
+    return instance.post(ROUTES.MOVIES, movie);
+  },
+  putMovie(movie) {    
+    return instance.put(ROUTES.MOVIES, movie);
+  },
+  deleteMovie(id) {
+    return instance.delete(`${ROUTES.MOVIES}/${id}`);
   }
 };
 

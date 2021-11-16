@@ -10,56 +10,10 @@ import EditMovieModal from "./content/movies/modal/EditMovieModal";
 import DeleteMovieModal from "./content/movies/modal/DeleteMovieModal";
 import MovieDetails from "./content/movies/movieDetails/movieDetails";
 
-import { getMovies } from "../redux/actions/thunks";
+import { getMovies, deleteMovie } from "../redux/actions/thunks";
 import { getMovieItems, getMoviesTotalAmount } from "../redux/selectors/selectors";
 
 import "../index.css";
-
-import pulpFiction from "../assets/pulp-fiction.png";
-import bohemian from "../assets/bohemian.png";
-import killBill from "../assets/kill-bill.png";
-import avengers from "../assets/avengers.png";
-import inception from "../assets/inception.png";
-import reserviordogs from "../assets/reservior-dogs.png";
-
-let items = [
-  {
-    id: 1,
-    title: "Pulp Fiction",
-    genre: "Action, Criminal",
-    image: pulpFiction,
-  },
-  {
-    id: 2,
-    title: "Bohemian Rhapsody",
-    genre: "Drama, Music",
-    image: bohemian,
-  },
-  {
-    id: 3,
-    title: "Kill Bill",
-    genre: "Action",
-    image: killBill,
-  },
-  {
-    id: 4,
-    title: "Avengers",
-    genre: "Action, Adventure",
-    image: avengers,
-  },
-  {
-    id: 5,
-    title: "Inception",
-    genre: "Action, Adventure",
-    image: inception,
-  },
-  {
-    id: 6,
-    title: "Reserviordogs",
-    genre: "Action Criminal",
-    image: reserviordogs,
-  },
-];
 
 const App = (props) => {
   const [isAddMovieModalVisible, setAddMovieModalVisible] = useState(false);
@@ -70,7 +24,7 @@ const App = (props) => {
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedSortValue, setSelectedSortValue] = useState("release_date");
 
-  const { movieItems, totalAmount, getMovies } = props;
+  const { movieItems, totalAmount, getMovies, deleteMovie } = props;
 
   useEffect(() => {    
     getMovies();
@@ -78,10 +32,16 @@ const App = (props) => {
 
   const handleAddMovieModalVisibility = useCallback((isVisible) => {
     setAddMovieModalVisible(isVisible);
+    if(!isVisible){
+      getMovies(selectedSortValue, selectedGenre);
+    }
   });
 
   const handleEditMovieModalVisibility = useCallback((isVisible) => {
     setEditMovieModalVisible(isVisible);
+    if(!isVisible){
+      getMovies(selectedSortValue, selectedGenre);
+    }
   });
 
   const handleDeleteMovieModalVisibility = useCallback((isVisible) => {
@@ -105,7 +65,16 @@ const App = (props) => {
     setMovieDetailsVisible(false);
   }
 
-  
+  const handleDeleteMovieSubmit = async () => {
+    setDeleteMovieModalVisible(false);
+    setMovieDetailsVisible(false);
+    await deleteMovie(movieId);
+    getMovies(selectedSortValue, selectedGenre);
+  }
+
+  const handleClose = () => {
+    alert("Semoetesla");
+  }
 
   const getMovieDetailsData = () => {
     return movieItems.find((m) => m.id === movieId);
@@ -137,16 +106,19 @@ const App = (props) => {
       {isAddMovieModalVisible && (
         <AddMovieModal
           onCloseMovieModalClick={() => handleAddMovieModalVisibility(false)}
+          testFunc={() => handleClose()}
         />
       )}
       {isEditMovieModalVisible && (
         <EditMovieModal
-          onCloseMovieModalClick={() => handleEditMovieModalVisibility(false)}
+          onCloseMovieModalClick={() => handleEditMovieModalVisibility(false)}          
+          movieItem={getMovieDetailsData()}
         />
       )}
       {isDeleteMovieModalVisible && (
         <DeleteMovieModal
-          onCloseMovieModalClick={() => handleDeleteMovieModalVisibility(false)}
+          onCloseMovieModalClick={() => handleDeleteMovieModalVisibility(false)}       
+          onDeleteMovieSubmitClick={handleDeleteMovieSubmit}
         />
       )}
     </>
@@ -161,5 +133,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getMovies })(App);
+export default connect(mapStateToProps, { getMovies, deleteMovie })(App);
 

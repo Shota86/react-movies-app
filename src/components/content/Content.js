@@ -6,7 +6,16 @@ import "./content.css";
 
 let Content = (props) => {
 
-  const { totalAmount, selectedGenre, onFilterMovieClick, onSortMovieClick } = props;
+  const { 
+    totalAmount,
+    selectedGenre,
+    items,
+    onFilterMovieClick,
+    onSortMovieClick,
+    onEditMovieClick,
+    onDeleteMovieClick,
+    onMovieDetailsClick,
+  } = props;
 
   return (
     <div className="content">
@@ -38,10 +47,10 @@ let Content = (props) => {
       </div>
       <p className="amount">{totalAmount} movies found</p>
       <Movies 
-        onEditMovieClick={props.onEditMovieClick}
-        onDeleteMovieClick={props.onDeleteMovieClick}
-        onMovieDetailsClick={props.onMovieDetailsClick}
-        items={props.items}
+        onEditMovieClick={onEditMovieClick}
+        onDeleteMovieClick={onDeleteMovieClick}
+        onMovieDetailsClick={onMovieDetailsClick}
+        items={items}
       />
     </div>
   );
