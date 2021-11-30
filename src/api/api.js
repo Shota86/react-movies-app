@@ -8,9 +8,9 @@ const instance = axios.create({
 });
 
 const moviesAPI = {
-  getMovies(offset=0, limit=10, sortBy="release_date", filter="") {
+  getMovies(offset=0, limit=10, sortBy="release_date", filter="", search="") {
     return instance
-      .get(`${ROUTES.MOVIES}?filter=${filter}&sortBy=${sortBy}&sortOrder=desc&offset=${offset}&limit=${limit}`)
+      .get(`${ROUTES.MOVIES}?filter=${filter}&sortBy=${sortBy}&sortOrder=desc&search=${search}&searchBy=title&offset=${offset}&limit=${limit}`)
       .then((response) => response.data);
   },
   getMovieById(id) {
