@@ -1,0 +1,71 @@
+.content {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: #232323;
+    margin-top: 10px;    
+    display: table; 
+    font-family: Montserrat;    
+}
+
+.filter {
+    float: left;
+}
+
+.filter ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;    
+  }
+  
+  .filter li {
+    float: left;
+  }
+  
+  .filter li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .filter li .selected {
+    border-bottom: 2px solid #F65261;
+  }
+  
+  .filter li a:hover {
+    background-color: #111111;    
+    cursor: pointer;
+  }
+
+.sort {
+    margin-top:17px;
+    margin-right: 17px;
+    float: right;
+    margin-bottom: 32px;
+}
+
+.sort label {
+    color: white;
+    margin-right: 30px;
+}
+
+.sort select {
+    width: 134px;
+    background-color: rgba(96, 96, 96, 0);
+    color: #FFFFFF;
+}
+
+.sort select option {
+    background-color: #232323 !important;
+}
+
+
+
+.content .amount {
+    clear: both;
+    color: #FFFFFF;    
+    margin-left: 16px;
+}   

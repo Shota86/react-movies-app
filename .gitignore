@@ -1,15 +1,39 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# compiled output
+/dist
+/build
+/tmp
+/out-tsc
+
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
 
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
 # testing
 /coverage
-
-# production
-/build
 
 # misc
 .DS_Store
